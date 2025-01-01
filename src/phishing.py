@@ -23,9 +23,8 @@ def parse_phishing_domains(result):
         data.append(domain)
 
     filename = "phishing_domains.csv"
-    columns = ["domain"]
 
-    write_intel_data(filename, columns, data)
+    write_intel_data(filename, data)
 
 
 def get_phishing_domains():
