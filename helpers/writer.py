@@ -1,5 +1,5 @@
 import os
-
+from helpers.config import dir
 
 def write_intel_data(filename, columns, data):
     '''
@@ -12,7 +12,7 @@ def write_intel_data(filename, columns, data):
     '''
 
     # Ensure directory exists
-    filename = os.path.join('data', filename)
+    filename = os.path.join(dir, filename)
     directory = os.path.dirname(filename)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)

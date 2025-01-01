@@ -1,13 +1,12 @@
 import os
 import glob
 from src import phishing
-
+from helpers.config import dir as data_dir
 
 def clear_data():
     """
     Deletes all CSV files in the data/ directory.
     """
-    data_dir = "data/"
     csv_files = glob.glob(os.path.join(data_dir, "*.csv"))
     for csv_file in csv_files:
         try:
