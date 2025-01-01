@@ -11,6 +11,8 @@ def clear_data():
     csv_files = glob.glob(os.path.join(data_dir, "*.csv"))
     for csv_file in csv_files:
         try:
+            if "phishing_ioc" in csv_file: # Static IOC file
+                continue
             os.remove(csv_file)
             print(f"Deleted: {csv_file}")
         except Exception as e:
