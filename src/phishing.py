@@ -19,10 +19,11 @@ def parse_phishing_domains(result):
         extracted = tldextract.extract(url)
         # Combine domain and suffix
         domain = f"{extracted.domain}.{extracted.suffix}"
-        data.append(f"{url},{domain}")  # Format as "url,domain"
+        data.append(url)
+        data.append(domain)
 
     filename = "phishing_domains.csv"
-    columns = ["url", "domain"]
+    columns = ["domain"]
 
     write_intel_data(filename, columns, data)
 
