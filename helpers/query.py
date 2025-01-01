@@ -10,13 +10,22 @@ load_dotenv(Path('.') / '.env')
 GROUPIB_USERNAME = os.getenv('GROUPIB_USERNAME')
 GROUPIB_API_KEY = os.getenv('GROUPIB_API_KEY')
 
-# Get sequence number for each feed (Get feed info for each day only, as this script is run daily)
-url = 'https://tap.group-ib.com/api/v2/sequence_list?date=' + \
-    datetime.now().strftime(format='%Y-%m-%d')
-response = requests.get(url, auth=HTTPBasicAuth(
-    GROUPIB_USERNAME, GROUPIB_API_KEY))
-sequences = response.json()['list']
+def get_sequences(date_time):
+    '''
+    Get sequence number for each feed (Get feed info for each day only, as this script is run daily)
 
+    Parameters:
+    - date_time: The date to query in the format 'YYYY-MM-DD'
+
+    Returns:
+    - sequences: The sequence numbers for each feed
+    '''
+    url = f'https://tap.group-ib.com/api/v2/sequence_list?date={date_time}'
+    response = requests.get(url, auth=HTTPBasicAuth(
+        GROUPIB_USERNAME, GROUPIB_API_KEY))
+    sequences = response.json()['list']
+
+    return sequences
 
 def query(feed, retries=5, delay=2):
     '''
