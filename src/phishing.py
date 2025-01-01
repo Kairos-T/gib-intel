@@ -1,7 +1,7 @@
-from helpers.query import query, sequences
+from helpers.query import query, get_sequences
 from helpers.writer import write_intel_data
 import tldextract
-
+from datetime import datetime, timedelta
 
 def parse_phishing_domains(result):
     '''
@@ -23,17 +23,26 @@ def parse_phishing_domains(result):
         data.append(domain)
 
     filename = "phishing_domains.csv"
-    columns = ["domain"]
 
-    write_intel_data(filename, columns, data)
+    write_intel_data(filename, data)
 
 
 def get_phishing_domains():
     '''
     Get phishing domains and their associated information from Group-IB API
     '''
-    sequence = sequences['attacks/phishing_group']
-    result = query('attacks/phishing_group/updated' +
-                   "?seqUpdate=" + str(sequence))
-    return parse_phishing_domains(result)
+    current_date = datetime.now()
+    
+    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']
 
+    while True:
+        result = query('attacks/phishing_group/updated' +
+                       "?seqUpdate=" + str(sequence))
+
+        if result.get('count', 0) != 0:
+            return parse_phishing_domains(result)
+
+        # If count is 0, decrease the date by 1 day and get the new sequence 
+        # This usually would not happen as the script is run daily
+        current_date -= timedelta(days=1)
+        sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']

@@ -1,7 +1,7 @@
 import os
+from helpers.config import dir
 
-
-def write_intel_data(filename, columns, data):
+def write_intel_data(filename, data):
     '''
     Writes the various threat intel data to a CSV file
 
@@ -12,13 +12,23 @@ def write_intel_data(filename, columns, data):
     '''
 
     # Ensure directory exists
-    filename = os.path.join('data', filename)
+    filename = os.path.join(dir, filename)
     directory = os.path.dirname(filename)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
 
-    # Write data to CSV
-    with open(filename, 'w') as f:
-        f.write(','.join(columns) + '\n')
-        for line in data:
-            f.write(line + '\n')
+    # Clear all data in csv except header before writing new data
+    if os.path.exists(filename):
+        with open(filename,
+                    'r') as f:
+                lines = f.readlines()
+                with open(filename, 'w') as f:
+                    f.write(lines[0])
+
+        # Write data to CSV
+        with open(filename, 'a') as f:
+            for line in data:
+                f.write(line + '\n')
+    else:
+        print("Error: File does not exist")
+            
