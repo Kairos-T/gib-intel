@@ -30,6 +30,10 @@ def query(feed, retries=5, delay=2):
     Returns:
     - results: The results of the query in JSON format if successful
     '''
+    if not GROUPIB_USERNAME or not GROUPIB_API_KEY:
+        print("Error: Group-IB username and/or API key not found")
+        return
+        
     url = f'https://tap.group-ib.com/api/v2/{feed}'
 
     for attempt in range(retries):
