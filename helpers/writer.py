@@ -11,12 +11,13 @@ def write_intel_data(filename, data):
     - data: The data to append to the CSV file (e.g., ["https://example.com,example.com", "https://example2.com,example2.com"])
     '''
 
-    # Ensure directory exists
+    # Check if directory and file exists, if it does not exist, set up was not done correctly.
     filename = os.path.join(dir, filename)
     directory = os.path.dirname(filename)
-    if directory and not os.path.exists(directory):
-        os.makedirs(directory)
-
+    
+    if not os.path.exists(directory) or not os.path.exists(filename):
+        raise FileNotFoundError(f"Directory or file does not exist: {directory} or {filename}. Set up was done incorrectly. Exiting.")
+    
     # Append data to CSV
     with open(filename, 'a') as f:
         for line in data:

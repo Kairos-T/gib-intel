@@ -1,5 +1,5 @@
 # Output directory for generated files
-test_dir = "data/"
+tmp_dir = "data/"
 dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
 
 # Default filenames and columns for CSV files

@@ -4,7 +4,6 @@ import time
 from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 from pathlib import Path
-from datetime import datetime
 
 load_dotenv(Path('.') / '.env')
 GROUPIB_USERNAME = os.getenv('GROUPIB_USERNAME')
