@@ -1,14 +1,14 @@
 import os
+import pandas as pd
 from helpers.config import dir
 
 def write_intel_data(filename, data):
     '''
-    Writes the various threat intel data to a CSV file
+    Appends data to a CSV file and removes duplicates.
 
     Parameters:
     - filename: The name of the file to write to, including the path (e.g., 'data/phishing_domains.csv')
-    - columns: The columns of the CSV file (e.g., ['url', 'domain'])
-    - data: The data to write to the CSV file (e.g., ["https://example.com,example.com", "https://example2.com,example2.com"])
+    - data: The data to append to the CSV file (e.g., ["https://example.com,example.com", "https://example2.com,example2.com"])
     '''
 
     # Ensure directory exists
@@ -17,18 +17,12 @@ def write_intel_data(filename, data):
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
 
-    # Clear all data in csv except header before writing new data
-    if os.path.exists(filename):
-        with open(filename,
-                    'r') as f:
-                lines = f.readlines()
-                with open(filename, 'w') as f:
-                    f.write(lines[0])
+    # Append data to CSV
+    with open(filename, 'a') as f:
+        for line in data:
+            f.write(line + '\n')
 
-        # Write data to CSV
-        with open(filename, 'a') as f:
-            for line in data:
-                f.write(line + '\n')
-    else:
-        print("Error: File does not exist")
-            
+    # Clean up CSV by removing duplicates
+    df = pd.read_csv(filename)
+    df.drop_duplicates(inplace=True)
+    df.to_csv(filename, index=False)
