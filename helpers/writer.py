@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from helpers.config import dir
 
+
 def write_intel_data(filename, data):
     '''
     Appends data to a CSV file and removes duplicates.
@@ -14,16 +15,25 @@ def write_intel_data(filename, data):
     # Check if directory and file exists, if it does not exist, set up was not done correctly.
     filename = os.path.join(dir, filename)
     directory = os.path.dirname(filename)
-    
+
     if not os.path.exists(directory) or not os.path.exists(filename):
-        raise FileNotFoundError(f"Directory or file does not exist: {directory} or {filename}. Set up was done incorrectly. Exiting.")
-    
+        raise FileNotFoundError(
+            f"Directory or file does not exist: {directory} or {filename}. Set up was done incorrectly. Exiting.")
+
     # Append data to CSV
     with open(filename, 'a') as f:
         for line in data:
-            f.write(line + '\n')
+            try:
+                f.write(line + '\n')
+            except:
+                pass
 
     # Clean up CSV by removing duplicates
-    df = pd.read_csv(filename)
-    df.drop_duplicates(inplace=True)
-    df.to_csv(filename, index=False)
+    try:
+        df = pd.read_csv(filename)
+        df.drop_duplicates(inplace=True)
+        df.to_csv(filename, index=False)
+    except Exception as e:
+        # Error might be due to typosquatting module
+        print(f"Error: {e}")
+        pass
