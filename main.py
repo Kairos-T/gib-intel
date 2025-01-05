@@ -1,9 +1,10 @@
-from src import phishing
+from src import phishing, typosquatting
 
 
 def main():
     intel_streams = {
         "phishing_domains": phishing.get_phishing_domains,
+        "typosquatting_domains": typosquatting.get_typosquatting_domains
     }
 
     for stream_name, func in intel_streams.items():
