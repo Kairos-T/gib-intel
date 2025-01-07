@@ -10,7 +10,7 @@ dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
 file_columns = {
     "phishing_domains.csv": ["Domain"],
     "typosquatting_domains.csv": ["Domain"],
-    "phishing_iocs.csv": ["IOC"]}
+    "phishing_iocs.csv": ["ioc"]}
 
 ##################################
 # Module Specific Configurations #
