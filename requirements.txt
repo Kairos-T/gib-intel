@@ -2,3 +2,5 @@ python-dotenv
 tldextract
 pathlib
 pandas
+ail-typo-squatting
+dnspython
