@@ -1,8 +1,8 @@
-from src import phishing, typosquatting
-
+from src import phishing_ioc, phishing, typosquatting
 
 def main():
     intel_streams = {
+        "phishing_iocs": phishing_ioc.get_phishing_iocs,
         "phishing_domains": phishing.get_phishing_domains,
         "typosquatting_domains": typosquatting.get_typosquatting_domains
     }

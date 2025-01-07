@@ -9,7 +9,8 @@ dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
 # Default filenames and columns for CSV files
 file_columns = {
     "phishing_domains.csv": ["Domain"],
-    "typosquatting_domains.csv": ["Domain"]}
+    "typosquatting_domains.csv": ["Domain"],
+    "phishing_iocs.csv": ["IOC"]}
 
 ##################################
 # Module Specific Configurations #
@@ -17,3 +18,6 @@ file_columns = {
 
 # typosquatting.py
 resolve_dns = False
+
+# phishing_ioc.py
+ioc_list = ["Request", "Follow up", "Urgent", "Important", "Are you available?", "Are you at your desk?", "Payment Status", "Hello", "Purchase", "Invoice Due", "Re:", "Direct Deposit", "Expenses", "Payroll", "Install", "Security alert", "Suspend"]
