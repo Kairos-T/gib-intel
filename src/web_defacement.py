@@ -19,7 +19,7 @@ def parse_web_defacement(result):
         if TENANT_NAME in url: # Check if defaced website belongs to the client
             data.append(url)
 
-    filename = "web_defacement.csv"
+    filename = "web_defacements.csv"
 
     write_intel_data(filename, data)
     

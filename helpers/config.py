@@ -20,7 +20,7 @@ file_columns = {
     "phishing_domains.csv": ["domain"],
     "typosquatting_domains.csv": ["domain"],
     "phishing_iocs.csv": ["ioc"],
-    "web_defacement.csv": ["url"]}
+    "web_defacements.csv": ["url"]}
 
 ##################################
 # Module Specific Configurations #
