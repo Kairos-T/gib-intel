@@ -1,14 +1,8 @@
 import dns.resolver
 import math
-import os
 from ail_typo_squatting import runAll
-from pathlib import Path
-from dotenv import load_dotenv
-from helpers.config import resolve_dns
+from helpers.config import resolve_dns, TENANT_NAME
 from helpers.writer import write_intel_data
-
-load_dotenv(Path('.') / '.env')
-TENANT_NAME = os.getenv('TENANT_NAME')
 
 
 def get_typosquatting_domains():
