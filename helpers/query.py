@@ -1,14 +1,7 @@
-import os
 import requests
 import time
 from requests.auth import HTTPBasicAuth
-from dotenv import load_dotenv
-from pathlib import Path
-from datetime import datetime
-
-load_dotenv(Path('.') / '.env')
-GROUPIB_USERNAME = os.getenv('GROUPIB_USERNAME')
-GROUPIB_API_KEY = os.getenv('GROUPIB_API_KEY')
+from helpers.config import GROUPIB_USERNAME, GROUPIB_API_KEY
 
 def get_sequences(date_time):
     '''
