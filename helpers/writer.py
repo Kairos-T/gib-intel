@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from helpers.config import dir
+from helpers.config import splunk_dir
 
 
 def write_intel_data(filename, data):
@@ -13,7 +13,7 @@ def write_intel_data(filename, data):
     '''
 
     # Check if directory and file exists, if it does not exist, set up was not done correctly.
-    filename = os.path.join(dir, filename)
+    filename = os.path.join(splunk_dir, filename)
     directory = os.path.dirname(filename)
 
     if not os.path.exists(directory) or not os.path.exists(filename):

@@ -1,5 +1,5 @@
 import os
-from helpers.config import file_columns, tmp_dir
+from helpers.config import file_columns, local_dir
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -15,7 +15,7 @@ if not GROUPIB_USERNAME or not GROUPIB_API_KEY or not TENANT_NAME:
 
 # Initialise CSV files with column headers if they don't already exist.
 for filename, columns in file_columns.items():
-    filepath = os.path.join(tmp_dir, filename)
+    filepath = os.path.join(local_dir, filename)
     if not os.path.exists(filepath):
         with open(filepath, 'w') as f:
             f.write(','.join(columns) + '\n')

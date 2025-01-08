@@ -3,8 +3,8 @@
 #########################
 
 # Output directory for generated files
-tmp_dir = "data/"
-dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
+local_dir = "data/"
+splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
 
 # Default filenames and columns for CSV files
 file_columns = {
