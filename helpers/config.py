@@ -14,8 +14,7 @@ TENANT_NAME = os.getenv('TENANT_NAME')
 
 # Output directory for generated files
 local_dir = "data/"
-# splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
-splunk_dir = "data/"
+splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
 
 # Retries and timeout for API requests
 retries = 5
