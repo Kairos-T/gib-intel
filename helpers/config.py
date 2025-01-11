@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+# API credentials
 load_dotenv(Path('.') / '.env')
 GROUPIB_USERNAME = os.getenv('GROUPIB_USERNAME')
 GROUPIB_API_KEY = os.getenv('GROUPIB_API_KEY')
@@ -13,7 +14,12 @@ TENANT_NAME = os.getenv('TENANT_NAME')
 
 # Output directory for generated files
 local_dir = "data/"
-splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
+# splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
+splunk_dir = "data/"
+
+# Retries and timeout for API requests
+retries = 5
+delay = 5
 
 # Default filenames and columns for CSV files
 file_columns = {

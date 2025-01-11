@@ -1,4 +1,5 @@
 from src import phishing_ioc, phishing, typosquatting, web_defacement
+from utils.logger import log
 
 def main():
     intel_streams = {
@@ -13,11 +14,9 @@ def main():
     for stream_name, func in intel_streams.items():
         try:
             func()
-            # TODO: Proper logging
-            print(f"Successfully processed: {stream_name}")
+            log("success", f"Successfully processed: {stream_name}")
         except Exception as e:
-            print(f"Failed to process {stream_name}: {e}")
-
+            log("error", f"Failed to process {stream_name}: {e}")
 
 if __name__ == "__main__":
     main()

@@ -1,7 +1,8 @@
 import requests
 import time
 from requests.auth import HTTPBasicAuth
-from helpers.config import GROUPIB_USERNAME, GROUPIB_API_KEY
+from helpers.config import GROUPIB_USERNAME, GROUPIB_API_KEY, retries, delay
+from utils.logger import log
 
 def get_sequences(date_time):
     '''
@@ -20,7 +21,7 @@ def get_sequences(date_time):
 
     return sequences
 
-def query(feed, retries=5, delay=2):
+def query(feed):
     '''
     Query Group-IB API for a specific feed with retry logic.
 
@@ -33,7 +34,7 @@ def query(feed, retries=5, delay=2):
     - results: The results of the query in JSON format if successful
     '''
     if not GROUPIB_USERNAME or not GROUPIB_API_KEY:
-        print("Error: Group-IB username and/or API key not found")
+        log("error", "Group-IB username and/or API key not found")
         return
         
     url = f'https://tap.group-ib.com/api/v2/{feed}'
@@ -47,7 +48,7 @@ def query(feed, retries=5, delay=2):
             return response.json()
 
         except requests.exceptions.RequestException as e:
-            print(f"Attempt {attempt + 1} of {retries} failed: {e}")
+            log("error", f"Attempt {attempt + 1} of {retries} failed: {e}")
 
             if attempt < retries - 1:
                 time.sleep(delay)
@@ -55,5 +56,5 @@ def query(feed, retries=5, delay=2):
                 raise
 
         except ValueError as e:
-            print(f"Error decoding JSON: {e}")
+            log("error", f"Error decoding JSON: {e}")
             raise

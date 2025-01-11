@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from helpers.config import splunk_dir
-
+from utils.logger import log
 
 def write_intel_data(filename, data):
     '''
@@ -25,7 +25,8 @@ def write_intel_data(filename, data):
         for line in data:
             try:
                 f.write(line + '\n')
-            except:
+            except Exception as e:
+                log("warning", f"Error writing {line} to file: {e}")
                 pass
 
     # Clean up CSV by removing duplicates
@@ -35,5 +36,5 @@ def write_intel_data(filename, data):
         df.to_csv(filename, index=False)
     except Exception as e:
         # Error might be due to typosquatting module
-        print(f"Error: {e}")
+        log("info", f"Error cleaning up CSV: {e}")
         pass

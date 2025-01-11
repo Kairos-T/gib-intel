@@ -4,3 +4,4 @@ pathlib
 pandas
 ail-typo-squatting
 dnspython
+colorama

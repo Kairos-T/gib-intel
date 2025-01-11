@@ -10,7 +10,6 @@ def parse_web_defacement(result):
     Parameters:
     - result: The result of the `get_web_defacement()` query in JSON format
     '''
-    print(result)
     urls = [item['siteUrl']
             for item in result['items']]  # Extract URLs from API response
     data = []
