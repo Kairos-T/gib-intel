@@ -24,7 +24,7 @@ delay = 5
 file_columns = {
     "phishing_domains.csv": ["domain"],
     "typosquatting_domains.csv": ["domain"],
-    "phishing_iocs.csv": ["ioc"],
+    "phishing_ioc.csv": ["ioc"],
     "web_defacements.csv": ["url"]}
 
 ##################################
