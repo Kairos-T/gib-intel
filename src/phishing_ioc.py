@@ -5,6 +5,6 @@ def get_phishing_iocs():
     '''
     Get phishing IOCs from the configuration file
     '''
-    filename = "phishing_iocs.csv"
+    filename = "phishing_ioc.csv"
     write_intel_data(filename, ioc_list)
     
