@@ -9,6 +9,8 @@ Threat intel gatherer from Group IB's API and other tools, for integration with 
   |------|-------------|--------|
   | Phishing Domains / URLs | Domains / URLs associated with phishing campaigns | Group IB |
   | Typosquatting Domains | Domains that are similar to popular domains | ail-typo-squatting |
+  | Web Defacements | URLs have been reported as defaced | Group IB |
+  | Bad Bots | User agents that are associated with malicious activity | nginx-ultimate-bad-bot-blocker |
 - Integrates with Splunk Lookup Tables
 
 ## Setup
