@@ -33,9 +33,11 @@ def get_phishing_domains():
     '''
     current_date = datetime.now()
     
-    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']
+    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))
     
     if sequence:
+        sequence = sequence['attacks/phishing_group']
+    
         while True:
             result = query('attacks/phishing_group/updated' +
                         "?seqUpdate=" + str(sequence))

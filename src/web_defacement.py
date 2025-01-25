@@ -28,9 +28,11 @@ def get_web_defacement_domains():
     '''
     current_date = datetime.now()
 
-    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/deface']
+    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))
     
-    if sequence: 
+    if sequence:
+        sequence = ['attacks/deface']
+    
         while True:
             result = query('attacks/deface/updated' +
                         "?seqUpdate=" + str(sequence))
