@@ -26,7 +26,8 @@ def write_intel_data(filename, data):
             try:
                 f.write(line + '\n')
             except Exception as e:
-                log("warning", f"Error writing {line} to file: {e}")
+                if "typosquatting" not in filename:
+                    log("warning", f"Error writing {line} to file: {e}")
                 pass
 
     # Clean up CSV by removing duplicates
@@ -36,5 +37,6 @@ def write_intel_data(filename, data):
         df.to_csv(filename, index=False)
     except Exception as e:
         # Error might be due to typosquatting module
-        log("info", f"Error cleaning up CSV: {e}")
+        if "typosquatting" not in filename:
+            log("error", f"Error cleaning up CSV: {e}")
         pass
