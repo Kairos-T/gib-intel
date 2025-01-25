@@ -34,15 +34,16 @@ def get_phishing_domains():
     current_date = datetime.now()
     
     sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']
+    
+    if sequence:
+        while True:
+            result = query('attacks/phishing_group/updated' +
+                        "?seqUpdate=" + str(sequence))
 
-    while True:
-        result = query('attacks/phishing_group/updated' +
-                       "?seqUpdate=" + str(sequence))
+            if result.get('count', 0) != 0:
+                return parse_phishing_domains(result)
 
-        if result.get('count', 0) != 0:
-            return parse_phishing_domains(result)
-
-        # If count is 0, decrease the date by 1 day and get the new sequence 
-        # This usually would not happen as the script is run daily
-        current_date -= timedelta(days=1)
-        sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']
+            # If count is 0, decrease the date by 1 day and get the new sequence 
+            # This usually would not happen as the script is run daily
+            current_date -= timedelta(days=1)
+            sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/phishing_group']

@@ -30,15 +30,16 @@ def get_web_defacement_domains():
 
     sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/deface']
     
-    while True:
-        result = query('attacks/deface/updated' +
-                       "?seqUpdate=" + str(sequence))
+    if sequence: 
+        while True:
+            result = query('attacks/deface/updated' +
+                        "?seqUpdate=" + str(sequence))
 
-        if result.get('count', 0) != 0:
-            return parse_web_defacement(result)
+            if result.get('count', 0) != 0:
+                return parse_web_defacement(result)
 
-        # If count is 0, decrease the date by 1 day and get the new sequence 
-        # This usually would not happen as the script is run daily
-        current_date -= timedelta(days=1)
-        sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/deface']
-    
+            # If count is 0, decrease the date by 1 day and get the new sequence 
+            # This usually would not happen as the script is run daily
+            current_date -= timedelta(days=1)
+            sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/deface']
+        

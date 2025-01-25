@@ -17,8 +17,10 @@ def get_sequences(date_time):
     url = f'https://tap.group-ib.com/api/v2/sequence_list?date={date_time}'
     response = requests.get(url, auth=HTTPBasicAuth(
         GROUPIB_USERNAME, GROUPIB_API_KEY))
-    sequences = response.json()['list']
-
+    try:
+        sequences = response.json()['list']
+    except KeyError as e:
+        return None
     return sequences
 
 def query(feed):
