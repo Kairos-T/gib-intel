@@ -27,7 +27,10 @@ file_columns = {
     "typosquatting_domains.csv": ["domain"],
     "phishing_ioc.csv": ["ioc"],
     "web_defacements.csv": ["url"],
-    "bad_bots.csv": ["bad_bot"]}
+    "bad_bots.csv": ["bad_bot"],
+    "c2_domains.csv": ["domain"],
+    "c2_ip.csv": ["ip"]
+    }
 
 ##################################
 # Module Specific Configurations #
