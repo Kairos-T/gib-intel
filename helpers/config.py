@@ -14,8 +14,8 @@ TENANT_NAME = os.getenv('TENANT_NAME')
 
 # Output directory for generated files
 local_dir = "data/"
-# splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
-splunk_dir = "data/"
+splunk_dir = "C:/Program Files/Splunk/etc/apps/search/lookups"
+# splunk_dir = "data/"
 
 # Retries and timeout for API requests
 retries = 5
@@ -38,3 +38,6 @@ resolve_dns = False
 
 # phishing_ioc.py
 ioc_list = ["Request", "Follow up", "Urgent", "Important", "Are you available?", "Are you at your desk?", "Payment Status", "Hello", "Purchase", "Invoice Due", "Re:", "Direct Deposit", "Expenses", "Payroll", "Install", "Security alert", "Suspend"]
+
+# bad_bots.py
+additional_list = ["sqlmap/1.6.4#stable+(https://sqlmap.org)", "dirbuster"]
