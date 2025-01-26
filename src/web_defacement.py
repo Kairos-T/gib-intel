@@ -27,11 +27,13 @@ def get_web_defacement_domains():
     Get web defacement domains and their associated information from Group-IB API
     '''
     current_date = datetime.now()
-
-    sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))
-    
+    try:
+        sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))
+    except Exception as e:
+        sequence = None
+        
     if sequence:
-        sequence = ['attacks/deface']
+        sequence = sequence['attacks/deface']
     
         while True:
             result = query('attacks/deface/updated' +
