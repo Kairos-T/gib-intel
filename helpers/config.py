@@ -40,4 +40,4 @@ resolve_dns = False
 ioc_list = ["Request", "Follow up", "Urgent", "Important", "Are you available?", "Are you at your desk?", "Payment Status", "Hello", "Purchase", "Invoice Due", "Re:", "Direct Deposit", "Expenses", "Payroll", "Install", "Security alert", "Suspend"]
 
 # bad_bots.py
-additional_list = ["sqlmap/1.6.4#stable+(https://sqlmap.org)", "dirbuster"]
+additional_list = ["sqlmap/1.6.4#stable+(https://sqlmap.org)", "dirbuster", "dirb"]
