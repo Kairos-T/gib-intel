@@ -28,6 +28,3 @@ def get_c2_domains():
                 
         filename = "c2_domains.csv"
         write_intel_data(filename, list(domains))
-
-# Call the function
-get_c2_domains()

@@ -29,7 +29,7 @@ file_columns = {
     "web_defacements.csv": ["url"],
     "bad_bots.csv": ["bad_bot"],
     "c2_domains.csv": ["domain"],
-    "c2_ip.csv": ["ip"]
+    "c2_ips.csv": ["ip"]
     }
 
 ##################################
