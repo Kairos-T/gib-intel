@@ -21,7 +21,7 @@ def get_c2_domains():
                 try:
                     domain = urlparse(line.split(',')[2].replace('"', '')).netloc
                     
-                    if domain and not re.match(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$', domain):
+                    if domain and not domain[-1].isdigit():
                         domains.add(domain)
                 except Exception:
                     pass
