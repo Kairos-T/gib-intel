@@ -28,7 +28,7 @@ def get_c2_ips():
                             ipaddress.ip_address(ip)
                             ips.add(ip)  
                         except ValueError:
-                            log("error", f"Invalid IP address found: {ip}")
+                            pass
                 except Exception as e:
                     log("error", f"Error processing line: {line}. Error: {e}")
             
