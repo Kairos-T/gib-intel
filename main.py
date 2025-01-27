@@ -12,9 +12,7 @@ def main():
         "c2_ips": c2_ip.get_c2_ips
         
     }
-    for stream_name, func in intel_streams.items():
-        func()
-        
+
     for stream_name, func in intel_streams.items():
         try:
             func()
