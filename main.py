@@ -1,4 +1,4 @@
-from src import phishing_ioc, phishing, typosquatting, web_defacement, bad_bots
+from src import phishing_ioc, phishing, typosquatting, web_defacement, bad_bots, c2_domain, c2_ip
 from utils.logger import log
 
 def main():
@@ -7,7 +7,10 @@ def main():
         "phishing_domains": phishing.get_phishing_domains,
         "typosquatting_domains": typosquatting.get_typosquatting_domains,
         "web_defacement": web_defacement.get_web_defacement_domains,
-        "bad_bots": bad_bots.get_bad_bots
+        "bad_bots": bad_bots.get_bad_bots,
+        "c2_domains": c2_domain.get_c2_domains,
+        "c2_ips": c2_ip.get_c2_ips
+        
     }
     for stream_name, func in intel_streams.items():
         func()
