@@ -15,6 +15,7 @@ def main():
 
     for stream_name, func in intel_streams.items():
         try:
+            log("info", f"Processing: {stream_name}")
             func()
             log("success", f"Successfully processed: {stream_name}")
         except Exception as e:

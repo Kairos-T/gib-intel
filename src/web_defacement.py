@@ -1,4 +1,4 @@
-from helpers.query import query, get_sequences
+from helpers.query import query
 from helpers.writer import write_intel_data
 from helpers.config import TENANT_NAME
 from utils.logger import log
@@ -10,14 +10,14 @@ def parse_web_defacement(result):
     Parameters:
     - result: The result of the `get_web_defacement()` query in JSON format
     '''
-    urls = [item['siteUrl']
+    entries = [f"{item['siteUrl']},{item['tsCreate'].replace('T', ' ').strip('Z')}"
             for item in result['items']]  # Extract URLs from API response
     data = []
 
-    for url in urls:
-        log("info", f"Web defacement URL Detected: {url}")
-        if TENANT_NAME in url: # Check if defaced website belongs to the client
-            data.append(url)
+    for entry in entries:
+        log("info", f"Web defacement URL Detected: {entry.replace(',', ' (')})")
+        if TENANT_NAME in entry: # Check if defaced website belongs to the client
+            data.append(entry)
 
     filename = "web_defacements.csv"
 

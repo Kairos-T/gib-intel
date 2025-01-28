@@ -24,7 +24,7 @@ def write_intel_data(filename, data):
     with open(filename, 'a') as f:
         for line in data:
             try:
-                f.write("\"" + line + "\"" + '\n')
+                f.write(line + '\n')
             except Exception as e:
                 if "typosquatting" not in filename:
                     log("warning", f"Error writing {line} to file: {e}")
@@ -36,7 +36,5 @@ def write_intel_data(filename, data):
         df.drop_duplicates(inplace=True)
         df.to_csv(filename, index=False)
     except Exception as e:
-        # Error might be due to typosquatting module
-        if "typosquatting" not in filename:
-            log("error", f"Error cleaning up CSV: {e}")
+        log("error", f"Error cleaning up CSV: {e}")
         pass
