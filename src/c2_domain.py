@@ -1,7 +1,6 @@
 import requests
 from helpers.writer import write_intel_data
 from urllib.parse import urlparse
-import re
 
 def get_c2_domains():
     '''

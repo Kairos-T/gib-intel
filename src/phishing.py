@@ -1,4 +1,4 @@
-from helpers.query import query, get_sequences
+from helpers.query import query
 from helpers.writer import write_intel_data
 import tldextract
 
