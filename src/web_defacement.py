@@ -1,7 +1,7 @@
 from helpers.query import query, get_sequences
 from helpers.writer import write_intel_data
-from datetime import datetime, timedelta
 from helpers.config import TENANT_NAME
+from utils.logger import log
 
 def parse_web_defacement(result):
     '''
@@ -15,6 +15,7 @@ def parse_web_defacement(result):
     data = []
 
     for url in urls:
+        log("info", f"Web defacement URL Detected: {url}")
         if TENANT_NAME in url: # Check if defaced website belongs to the client
             data.append(url)
 
@@ -26,24 +27,7 @@ def get_web_defacement_domains():
     '''
     Get web defacement domains and their associated information from Group-IB API
     '''
-    current_date = datetime.now()
-    try:
-        sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))
-    except Exception as e:
-        sequence = None
-        
-    if sequence:
-        sequence = sequence['attacks/deface']
-    
-        while True:
-            result = query('attacks/deface/updated' +
-                        "?seqUpdate=" + str(sequence))
+    result = query('attacks/deface')
 
-            if result.get('count', 0) != 0:
-                return parse_web_defacement(result)
-
-            # If count is 0, decrease the date by 1 day and get the new sequence 
-            # This usually would not happen as the script is run daily
-            current_date -= timedelta(days=1)
-            sequence = get_sequences(current_date.strftime(format='%Y-%m-%d'))['attacks/deface']
-        
+    if result.get('count', 0) != 0:
+        return parse_web_defacement(result)
